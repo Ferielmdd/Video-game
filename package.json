@@ -1,17 +1,25 @@
 {
-  "name": "sass",
+  "name": "video-game",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "dependencies": {},
   "scripts": {
-    "dev": "parcel src/index.html src/screens/*.html",
-    "build": "parcel build src/index.html src/screens/*.html"
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekocheik/coh-rance-cardiaque.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nekocheik/coh-rance-cardiaque/issues"
+  },
+  "homepage": "https://github.com/nekocheik/coh-rance-cardiaque#readme",
   "devDependencies": {
-    "node-sass": "^4.11.0",
-    "parcel-bundler": "^1.10.3"
-  }
+    "parcel-bundler": "^1.11.0",
+    "sass": "^1.16.1"
+  },
+  "description": ""
 }
