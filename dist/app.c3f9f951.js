@@ -105,20 +105,54 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"js/app.js":[function(require,module,exports) {
-var canvas = document.getElementById("myCanvas");
+var canvas = document.getElementById("myCanvas"); // --------- ball propriété ---------//
+
 var ctx = canvas.getContext("2d");
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
-ctx.beginPath();
-ctx.rect(160, 10, 100, 40);
+var x = canvas.width / 2;
+var y = canvas.height - 30;
+var dx = -3;
+var dy = -3;
+var ballRadius = 10; // ----- ball fonction ------- //
+
+function drawBall() {
+  ctx.beginPath();
+  ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+  ctx.fillStyle = "blue";
+  ctx.fill();
+  ctx.closePath();
+} // ---------- paddle -------//
+
+
+var paddleHeight = 10;
+var paddleWidth = 75;
+var paddleX = (canvas.width - paddleWidth) / 2;
+
+function paddle() {
+  ctx.beginPath();
+  ctx.rect(paddleX, canvas.height - paddleWidth, paddleWidth, paddleHeight);
+  ctx.fillStyle = "blue";
+  ctx.fill();
+  ctx.closePath();
+} // ------- frames ----------  //
+
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  paddle();
+  drawBall();
+  x += dx;
+  y += dy;
+
+  if (y + dy > canvas.height || y + dy < ballRadius) {
+    dy = -dy;
+  }
+
+  if (x + dx > canvas.width || x + dx < ballRadius) {
+    dx = -dx;
+  }
+}
+
+setInterval(draw, 10);
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -146,7 +180,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50569" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64383" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
